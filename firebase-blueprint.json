@@ -1,0 +1,192 @@
+{
+  "entities": {
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Comptoir gold purchase record including karat, gross and non-gold weight, payments and supplier",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "reference": { "type": "string", "maxLength": 64 },
+        "description": { "type": "string", "maxLength": 500 },
+        "amount": { "type": "number" },
+        "purchasedAt": { "type": "string", "maxLength": 64 },
+        "supplier": { "type": "string", "maxLength": 128 },
+        "grossWeightGrams": { "type": "number" },
+        "nonGoldWeightGrams": { "type": "number" },
+        "netWeightGrams": { "type": "number" },
+        "karat": { "type": "string", "maxLength": 10 },
+        "goldCategory": { "type": "string", "maxLength": 64 },
+        "purityPercent": { "type": "number" },
+        "referencePricePerGram": { "type": "number" },
+        "cancelledAt": { "type": "string", "maxLength": 64 },
+        "cancellationReason": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["id", "amount", "purchasedAt"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Gold sale record with automatic stock deduction and direct cash desk deposit",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "description": { "type": "string", "maxLength": 500 },
+        "profit": { "type": "number" },
+        "revenue": { "type": "number" },
+        "weightGrams": { "type": "number" },
+        "karat": { "type": "string", "maxLength": 10 },
+        "category": { "type": "string", "maxLength": 64 },
+        "targetAccount": { "type": "string", "maxLength": 128 },
+        "soldAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "description", "revenue", "weightGrams", "karat"]
+    },
+    "StockMovement": {
+      "title": "StockMovement",
+      "description": "Gold stock ledger movement (purchase addition, sale subtraction, or physical correction)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "label": { "type": "string", "maxLength": 256 },
+        "karat": { "type": "string", "maxLength": 10 },
+        "weightGrams": { "type": "number" },
+        "date": { "type": "string", "maxLength": 64 },
+        "type": { "type": "string", "maxLength": 32 },
+        "category": { "type": "string", "maxLength": 64 },
+        "reason": { "type": "string", "maxLength": 500 },
+        "referenceId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["id", "karat", "weightGrams", "type"]
+    },
+    "Contact": {
+      "title": "Contact",
+      "description": "Client, supplier, or foreign trading partner",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "reference": { "type": "string", "maxLength": 64 },
+        "name": { "type": "string", "maxLength": 128 },
+        "phone": { "type": "string", "maxLength": 64 },
+        "city": { "type": "string", "maxLength": 64 },
+        "email": { "type": "string", "maxLength": 128 },
+        "appointment": { "type": "string", "maxLength": 128 },
+        "notes": { "type": "string", "maxLength": 1000 }
+      },
+      "required": ["reference", "name"]
+    },
+    "LedgerEntry": {
+      "title": "LedgerEntry",
+      "description": "Comptoir treasury and general ledger financial movement",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 256 },
+        "subtitle": { "type": "string", "maxLength": 256 },
+        "amount": { "type": "number" },
+        "date": { "type": "string", "maxLength": 64 },
+        "isIncome": { "type": "boolean" },
+        "isProcessed": { "type": "boolean" },
+        "isTransfer": { "type": "boolean" },
+        "isDeposit": { "type": "boolean" }
+      },
+      "required": ["id", "title", "amount"]
+    },
+    "BankBalance": {
+      "title": "BankBalance",
+      "description": "Cash register or bank account balance in FCFA",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 128 },
+        "balance": { "type": "number" },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["name", "balance"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global settings and purchase formula configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "purchaseFormulaConfig": { "type": "string", "maxLength": 4096 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Comptoir staff user with assigned role, profile and status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 128 },
+        "phone": { "type": "string", "maxLength": 64 },
+        "role": { "type": "string", "maxLength": 32 },
+        "roleLabel": { "type": "string", "maxLength": 128 },
+        "status": { "type": "string", "maxLength": 32 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "name", "role", "status"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Comptoir operational task assigned by administrator to a role or specific user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "reference": { "type": "string", "maxLength": 64 },
+        "title": { "type": "string", "maxLength": 256 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "assignedRole": { "type": "string", "maxLength": 32 },
+        "assignedUserId": { "type": "string", "maxLength": 128 },
+        "assignedUserName": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "priority": { "type": "string", "maxLength": 32 },
+        "status": { "type": "string", "maxLength": 32 },
+        "dueDate": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "createdBy": { "type": "string", "maxLength": 128 },
+        "completionNote": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["id", "reference", "title", "assignedRole", "status"]
+    }
+  },
+  "firestore": {
+    "/purchases/{purchaseId}": {
+      "schema": "Purchase",
+      "description": "Comptoir gold purchases"
+    },
+    "/sales/{saleId}": {
+      "schema": "Sale",
+      "description": "Gold sales and export transactions"
+    },
+    "/stock_movements/{movementId}": {
+      "schema": "StockMovement",
+      "description": "Gold stock ledger entries"
+    },
+    "/contacts/{contactId}": {
+      "schema": "Contact",
+      "description": "Clients and suppliers"
+    },
+    "/operations/{operationId}": {
+      "schema": "LedgerEntry",
+      "description": "Treasury journal operations"
+    },
+    "/accounts/{accountId}": {
+      "schema": "BankBalance",
+      "description": "Bank accounts and cash desk balances"
+    },
+    "/settings/{settingsId}": {
+      "schema": "Settings",
+      "description": "Formula configuration and application preferences"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Staff users and roles"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Operational tasks assigned to roles"
+    }
+  }
+}

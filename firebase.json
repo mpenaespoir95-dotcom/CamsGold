@@ -1,0 +1,23 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ],
+  "firestore": [
+    {
+      "database": "ai-studio-camsgold-aac9e856-fac5-4a8d-a74b-c1a7ca9769a8",
+      "rules": "firestore.rules"
+    }
+  ]
+}

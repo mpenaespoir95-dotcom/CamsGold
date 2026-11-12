@@ -1,0 +1,9 @@
+{
+  "name": "CAMS GOLD",
+  "description": "Application CAMS GOLD de gestion de l'or, des devises, de la trésorerie et des partenariats.",
+  "prompt": "Rewrite Flutter project to React application preserving core features and business logic.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
